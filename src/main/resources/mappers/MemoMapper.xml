@@ -4,30 +4,37 @@
 <mapper namespace="com.green.memoserver.MemoMapper">
     <insert id="save">
         INSERT INTO memo
-            SET title = #{title}
-                , content = #{ctnts}
+        SET title = #{title}
+        , content = #{ctnts}
     </insert>
 
     <select id="findAll">
         SELECT id, title, created_at
-          FROM memo
-        <if test="searchText != null and searchText != ''">
-            WHERE title LIKE '%${searchText}%'
-                OR content LIKE '%${searchText}%'
-
+        FROM memo
+        <if test=" searchText != null and searchText != '' ">
+            <bind name="pattern" value="'%' + _parameter.getSearchText() + '%'" />
+            WHERE title LIKE #{pattern}
+            OR content LIKE '%${pattern}%'
         </if>
         ORDER BY id DESC
     </select>
 
     <select id="findById">
-        SELECT id, title, content, created_at
+        SELECT *
         FROM memo
-        WHERE id = #{memoId}
+        WHERE id = #{id}
     </select>
 
+    <update id="modify">
+        UPDATE memo
+        SET title = #{title}
+        , content = #{ctnts}
+        WHERE id = #{memoId}
+
+    </update>
+
     <delete id="deleteById">
-        DELETE
-        FROM memo
+        DELETE FROM memo
         WHERE id = #{id}
     </delete>
 </mapper>

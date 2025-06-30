@@ -8,7 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MemoPostReq {
-
     private String title;
     private String ctnts; // postman 이름과 맞춰서 작업해야 한다.
 }
