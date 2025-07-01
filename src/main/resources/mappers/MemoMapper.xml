@@ -22,7 +22,7 @@
     <select id="findById">
         SELECT *
         FROM memo
-        WHERE id = #{id}
+        WHERE id = #{memoId}
     </select>
 
     <update id="modify">

@@ -21,7 +21,7 @@ public class MemoController {
     public ResultResponse<Integer> postMemo(@RequestBody MemoPostReq req) { //JSON로 넘어오는구나
         log.info("req={}", req);
         int result = memoService.save(req);
-        return new ResultResponse<>("삽입 성공", result);
+        return new ResultResponse<>("삽입 성공", result);  // 첫 번째는 문자열, 두 번째는 data
     }
 
     //Read
